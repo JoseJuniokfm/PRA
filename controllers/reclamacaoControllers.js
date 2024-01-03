@@ -1,3 +1,204 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Reclamações
+ *   description: Rotas relacionadas a reclamações
+ */
+
+/**
+ * @swagger
+ * /reclamacoes:
+ *   get:
+ *     summary: Lista todas as reclamações
+ *     tags: [Reclamações]
+ *     responses:
+ *       200:
+ *         description: Retorna a lista de todas as reclamações
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Reclamacao'
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
+/**
+ * @swagger
+ * /reclamacoes:
+ *   post:
+ *     summary: Cria uma nova reclamação
+ *     tags: [Reclamações]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ReclamacaoInput'
+ *     responses:
+ *       201:
+ *         description: Reclamação criada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Reclamacao'
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
+/**
+ * @swagger
+ * /reclamacoes/{id}:
+ *   get:
+ *     summary: Obtém uma reclamação pelo ID
+ *     tags: [Reclamações]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID da reclamação a ser obtida
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Retorna os detalhes da reclamação
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Reclamacao'
+ *       404:
+ *         description: Reclamação não encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
+/**
+ * @swagger
+ * /reclamacoes/{id}:
+ *   put:
+ *     summary: Atualiza uma reclamação pelo ID
+ *     tags: [Reclamações]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID da reclamação a ser atualizada
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ReclamacaoInput'
+ *     responses:
+ *       200:
+ *         description: Reclamação atualizada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Reclamacao'
+ *       404:
+ *         description: Reclamação não encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
+/**
+ * @swagger
+ * /reclamacoes/{id}:
+ *   delete:
+ *     summary: Exclui uma reclamação pelo ID
+ *     tags: [Reclamações]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID da reclamação a ser excluída
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Reclamação excluída com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Mensagem de sucesso
+ *       404:
+ *         description: Reclamação não encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
 const Reclamacao = require('../models/reclamacaoModel');
 
 async function listarReclamacoes(req, res) {
