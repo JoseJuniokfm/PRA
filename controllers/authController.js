@@ -1,3 +1,114 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Autenticação
+ *   description: Rotas relacionadas à autenticação de usuários
+ */
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Autentica um usuário
+ *     tags: [Autenticação]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               matricula:
+ *                 type: integer
+ *                 description: Matrícula do usuário
+ *               senha:
+ *                 type: string
+ *                 description: Senha do usuário
+ *     responses:
+ *       200:
+ *         description: Login bem-sucedido. Retorna um token de acesso.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: Token de acesso
+ *       401:
+ *         description: Credenciais inválidas
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Registra um novo usuário
+ *     tags: [Autenticação]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               matricula:
+ *                 type: integer
+ *                 description: Matrícula do novo usuário
+ *               nome:
+ *                 type: string
+ *                 description: Nome do novo usuário
+ *               senha:
+ *                 type: string
+ *                 description: Senha do novo usuário
+ *               tipo:
+ *                 type: string
+ *                 enum: [seac, etep, professor, aluno]
+ *                 description: Tipo do novo usuário
+ *     responses:
+ *       201:
+ *         description: Usuário registrado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Mensagem de sucesso
+ *                 novoUsuario:
+ *                   type: object
+ *                   description: Informações do novo usuário registrado
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro
+ */
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/usuarioModel');
