@@ -3,14 +3,17 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const processoRoutes = require('./routes/processoRoutes');
 const reclamacaoRoutes = require('./routes/reclamacaoRoutes');
+const cors = require('cors');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 
+
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/auth', authRoutes);
