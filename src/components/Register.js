@@ -29,7 +29,7 @@ function Register() {
 
     try {
       // Fazer a requisição para a API
-      const response = await fetch('http://localhost:3001/auth/register', {
+      const response = await fetch('http://pra-integrado.azurewebsites.net/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
