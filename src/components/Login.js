@@ -13,7 +13,7 @@ const handleLogin = async () => {
       setError(''); // Limpa mensagens de erro antes de cada tentativa de login
 
       // Faz a chamada à sua API para realizar o login
-      const response = await fetch('http://localhost:3001/auth/login', {
+      const response = await fetch('http://pra-integrado.azurewebsites.net/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
